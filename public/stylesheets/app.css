@@ -1,3 +1,18 @@
 .services {
 	width : 100px;
 }
+
+.email-submit {
+	margin: 10px;
+	text-align: center;
+}
+
+.email-submit input {
+	margin: auto;
+	width : 200px;
+
+}
+
+.email-submit button {
+	margin-top: 20px;
+}

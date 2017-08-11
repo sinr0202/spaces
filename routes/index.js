@@ -21,20 +21,20 @@ router.get('/', function(req, res, next) {
 // 	res.render('msgs');
 // })
 
-// router.post('/msgs', function(req, res, next){
-// 	console.log(req.body)
-// 	if(req.body.msg){
-// 		MongoClient.connect(url, function(err, db) {
-// 			assert.equal(null, err);
-// 			db.collection('msgs').insertOne({msg:req.body.msg, user:req.body.user, createdAt: new Date()}, function(err, r) {
-// 				assert.equal(null, err);
-// 				assert.equal(1, r.insertedCount);
-// 				db.close();
-// 			});
-// 		});
-// 	}
-// 	res.redirect('/msgs');
-// })
+router.post('/', function(req, res, next){
+	console.log(req.body)
+	if(req.body.email){
+		MongoClient.connect(url, function(err, db) {
+			assert.equal(null, err);
+			db.collection('spaces').insertOne({email:req.body.email, createdAt: new Date()}, function(err, r) {
+				assert.equal(null, err);
+				assert.equal(1, r.insertedCount);
+				db.close();
+			});
+		});
+	}
+	res.redirect('/');
+})
 
 // router.get('/sent', function(req, res, next){
 // 	MongoClient.connect(url, function(err, db) {
