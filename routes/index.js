@@ -24,6 +24,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next){
 	console.log(req.body)
 	if(req.body.email){
+		console.log('connect and store email in database');
 		MongoClient.connect(url, function(err, db) {
 			assert.equal(null, err);
 			db.collection('spaces').insertOne({email:req.body.email, createdAt: new Date()}, function(err, r) {
@@ -32,6 +33,8 @@ router.post('/', function(req, res, next){
 				db.close();
 			});
 		});
+	} else {
+		console.log('no email received');
 	}
 	res.redirect('/');
 })
