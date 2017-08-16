@@ -39,72 +39,14 @@ router.post('/', function(req, res, next){
 	res.redirect('/');
 })
 
-// router.get('/sent', function(req, res, next){
-// 	MongoClient.connect(url, function(err, db) {
-// 		assert.equal(null, err);
-// 		db.collection('msgs').find({},{sort:"createdAt"}).toArray(function(err, data) {
-// 			db.close();
-// 			res.json(data);
-// 		});
-// 	});
-// })
-
-
-// router.get('/kiss', function(req, res, next) {
-// 	MongoClient.connect(url, function(err, db) {
-// 		assert.equal(null, err);
-// 		db.collection('redcounter').insertOne({type:"kiss", createdAt: new Date()}, function(err, r) {
-// 			assert.equal(null, err);
-// 			assert.equal(1, r.insertedCount);
-// 			db.close();
-// 		});
-// 	});
-
-// 	res.redirect('/');
-// });
-
-
-// router.get('/lick', function(req, res, next) {
-// 	MongoClient.connect(url, function(err, db) {
-// 		assert.equal(null, err);
-// 		db.collection('redcounter').insertOne({type:"lick", createdAt: new Date()}, function(err, r) {
-// 			assert.equal(null, err);
-// 			assert.equal(1, r.insertedCount);
-// 			db.close();
-// 		});
-// 	});
-
-// 	res.redirect('/');
-// });
-
-
-// router.get('/sex', function(req, res, next) {
-// 	MongoClient.connect(url, function(err, db) {
-// 		assert.equal(null, err);
-// 		db.collection('redcounter').insertOne({type:"sex", createdAt: new Date()}, function(err, r) {
-// 			assert.equal(null, err);
-// 			assert.equal(1, r.insertedCount);
-// 			db.close();
-// 		});
-// 	});
-
-// 	res.redirect('/');
-// });
-
-// router.get('/stats', function(req, res, next) {
-// 	MongoClient.connect(url, function(err, db) {
-// 		assert.equal(null, err);
-// 		db.collection('redcounter').count({type:"kiss"}).then(function(kiss) {
-// 			db.collection('redcounter').count({type:"lick"}).then(function(lick) {
-// 				db.collection('redcounter').count({type:"sex"}).then(function(sex) {
-// 					db.close();
-// 					res.json({kiss:kiss, lick:lick, sex:sex});
-// 				});
-// 			});
-// 		});
-// 	});
-// });
-
-
+router.get('/stats', function(req, res, next){
+	MongoClient.connect(url, function(err, db) {
+		assert.equal(null, err);
+		db.collection('spaces').find({},{sort:"createdAt"}).toArray(function(err, data) {
+			db.close();
+			res.json(data);
+		});
+	});
+});
 
 module.exports = router;
